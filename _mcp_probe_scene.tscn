@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://dyqi13r7g0vmn"]
-
-[ext_resource type="PackedScene" uid="uid://bwo6yx6m4n20p" path="res://main.tscn" id="2_uen2g"]
-
-[node name="_MCPProbe" type="Node3D" unique_id=1860136153]
-
-[node name="World" parent="." unique_id=1833229642 instance=ExtResource("2_uen2g")]

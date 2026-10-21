@@ -30,7 +30,7 @@ Godot 4.7 (Forward Plus + Jolt) first-person FPS prototype: a procedurally drive
 | `assets/models/` | GLB models, including `IK_character.glb` and the sources used by the vendored IK demos. |
 | `mats/` | Environment, sky, floor, and target materials. |
 | `sounds/glock/` | G18 sound effects loaded by `weapon_controller.gd`. |
-| `dev_test/` | Current probes `rig_probe` and `measure_fingertips`; `verify_*` probes are stale. |
+| `dev_test/` | Probes `rig_probe` and `measure_fingertips`. |
 | `addons/godot_ai/` | Vendored Godot AI MCP add-on (v4.3.0). |
 | `vendor/ik_demo/` | Vendored IK demo scenes and controllers. |
 | `weapons/README.md` | Turkish weapon/rig documentation. |
@@ -47,8 +47,7 @@ godot --headless --path . --script res://dev_test/measure_fingertips.gd
 ```
 
 - Run these from the repository root. There is no lint, format, typecheck, build, or test command; these probes are the entire validation surface.
-- `dev_test/rig_probe` writes `user://probe_out.txt` (and `user://probe_shot_*.png`); `measure_fingertips` prints `MEASURE ...` lines. These are the current tools. `verify_bodycam.gd`, `verify_recoil_eject.gd`, and the root-level `rigshot.gd` were written against the old API (`Player/CameraPivot/Weapon`, the removed `weapon_aim_offset` / `weapon_aim_raw`); they FAIL with the current code, so do not treat them as regression references.
-- The screenshot directory in `verify_*.gd` is hardcoded for Windows (`C:/Users/tunac/...`); ignore the images on Linux.
+- `dev_test/rig_probe` writes `user://probe_out.txt` (and `user://probe_shot_*.png`); `measure_fingertips` prints `MEASURE ...` lines. These are the current tools.
 - When debugging, check the script errors in the `godot --path .` output first; `push_warning` messages can be silently missed.
 
 ## Verification (mandatory, cheapest-first)
@@ -58,7 +57,7 @@ godot --headless --path . --script res://dev_test/measure_fingertips.gd
 3. For fingertip/mesh measurements, run `godot --headless --path . --script res://dev_test/measure_fingertips.gd` and read the `MEASURE ...` lines.
 4. Report the exact command and observed result. If Godot is unavailable, say the change was not run; do not claim it passed.
 
-There is no automated suite to fall back on, and the stale `verify_*` probes are not regression tests.
+There is no automated suite to fall back on; the two probes above are the entire validation surface.
 
 ## Godot AI MCP
 
@@ -91,7 +90,6 @@ Before writing code, use `question`: when the target scene/node/script is unclea
 ## Scenes and UID
 
 - `.tscn` / `.tres` files contain `uid://` and `unique_id=` references. Manual bulk editing breaks references; use MCP/editor or re-save with Godot, then open the project and verify there are no missing resource errors.
-- `_t*.tscn`, `_mcp_probe_scene.tscn`, `hello.tscn`, `temp_ik_check.tscn`, `inspect.tscn`, and `rigshot.gd` are old/scratch files left in place on purpose. `inspect.tscn`'s reference to `inspect_bones.gd` is a known gap; do not delete or "fix" it unless asked.
 - The large binary assets in the root (`gun.glb` ~94 MB, normal map ~75 MB) and `.import` files are tracked; do not re-import/export and commit them unless asked.
 
 ## Documentation
@@ -122,6 +120,6 @@ Before writing code, use `question`: when the target scene/node/script is unclea
 
 ## Working agreement
 
-- Investigate unfamiliar files before changing or deleting them; the scratch scenes and `rigshot.gd` listed above are intentional.
+- Investigate unfamiliar files before changing or deleting them.
 - Prefer the smallest change that fits the existing scene/script structure; do not refactor unrelated rig, weapon, or input code in the same change.
 - Report uncertainty honestly. Do not present an unverified claim as verified.

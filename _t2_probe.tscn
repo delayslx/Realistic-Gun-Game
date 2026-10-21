@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://6ytjde2x2mc5"]
-
-[ext_resource type="PackedScene" uid="uid://dxlybkcnfbyie" path="res://assets/models/IK_character.glb" id="1_g"]
-
-[node name="Root" type="Node3D" unique_id=433776797]
-
-[node name="Root#IKchar" parent="." unique_id=1570001598 instance=ExtResource("1_g")]
