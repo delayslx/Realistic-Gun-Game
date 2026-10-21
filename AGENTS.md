@@ -1,6 +1,33 @@
 # AGENTS.md - RealisticGunGame
 
-Godot 4.7 (Forward Plus + Jolt) FPS prototype. There is no CI, test framework, or build step; validation is done by running the game/probes and reading logs.
+Godot 4.7 (Forward Plus + Jolt) first-person FPS prototype: a procedurally driven G18 pistol mounted in the hand of an IK character rig, with a bodycam-style camera and a controls panel generated from the InputMap. The playable flow is `main.tscn` (move with WASD, aim with RMB, fire with LMB, R/F for magazine/slide). There is no CI, test framework, build step, package manager, or root README; validation is done by running the game/probes and reading logs.
+
+## General standards
+
+- **Language:** `AGENTS.md` and `weapon_controller.gd` are English; `player_controller.gd` mixes English and Turkish; `weapons/README.md`, `weapon_manager.gd`, and the IK scripts are mostly Turkish. Keep each file in its existing language instead of translating comments in bulk.
+- **Dependencies:** Godot add-ons are vendored under `addons/` (currently `godot_ai` 4.3.0); `vendor/ik_demo` is vendored reference code. Do not add a package manager or a second IK/animation stack for a local change.
+- **Errors:** Follow the existing pattern: return early and report with `push_warning` (for example `weapon_manager.gd` when a weapon scene or mount is missing). Do not add silent fallbacks that hide a broken scene.
+- **Security:** Never commit secrets, tokens, keys, or real customer data. Engine configuration lives in `project.godot`; runtime tuning lives in exported scene properties, and there is no environment/secret layer.
+- **Scope:** Keep rig, weapon, and input changes scoped to the files involved. Do not mass-edit `.tscn` / `.tres` UIDs or re-import tracked assets (see below).
+
+## Repo map
+
+| Path | Purpose |
+| --- | --- |
+| `main.tscn` | Playable arena: `Player`, `IK_character`, three targets, `UI`, sun/floor. |
+| `ik_character.tscn` | IK rig: skeleton modifier chain, hand/finger markers, `WeaponMount`, editor weapon preview. |
+| `scripts/` | `player_controller.gd`, `weapon_controller.gd`, `weapon_manager.gd` autoload, `controls_ui.gd`, `ik/hand_rig.gd`, `ik/finger_ik.gd`. |
+| `weapons/g18/g18.tscn` | Current weapon (G18) and the template for a new one; `weapons/README.md` documents the layout. |
+| `assets/models/` | GLB models, including `IK_character.glb` and the sources used by the vendored IK demos. |
+| `mats/` | Environment, sky, floor, and target materials. |
+| `sounds/glock/` | G18 sound effects loaded by `weapon_controller.gd`. |
+| `dev_test/` | Current probes `rig_probe` and `measure_fingertips`; `verify_*` probes are stale. |
+| `addons/godot_ai/` | Vendored Godot AI MCP add-on (v4.3.0). |
+| `vendor/ik_demo/` | Vendored IK demo scenes and controllers. |
+| `weapons/README.md` | Turkish weapon/rig documentation. |
+| `AGENTS.md` | This guide. |
+
+There is no root `README.md`, API reference, or user guide. `weapons/README.md` is the only project documentation besides this file; `addons/godot_ai/README.md` is upstream add-on documentation.
 
 ## Running and validation
 
@@ -10,35 +37,45 @@ godot --path . res://dev_test/rig_probe.tscn    # output: user://probe_out.txt
 godot --headless --path . --script res://dev_test/measure_fingertips.gd
 ```
 
-- Godot 4.7 is required; the binary is not in the repo (depending on your installation the command may be `godot4`). Opening the project with an older Godot can corrupt `uid://` / `unique_id` data.
-- `dev_test/rig_probe` and `measure_fingertips` are the current tools. `verify_bodycam.gd`, `verify_recoil_eject.gd`, and the root-level `rigshot.gd` were written against the old API (`Player/CameraPivot/Weapon`, the removed `weapon_aim_offset` / `weapon_aim_raw`); they FAIL with the current code, so do not treat them as regression references.
+- Run these from the repository root. There is no lint, format, typecheck, build, or test command; these probes are the entire validation surface.
+- `dev_test/rig_probe` writes `user://probe_out.txt` (and `user://probe_shot_*.png`); `measure_fingertips` prints `MEASURE ...` lines. These are the current tools. `verify_bodycam.gd`, `verify_recoil_eject.gd`, and the root-level `rigshot.gd` were written against the old API (`Player/CameraPivot/Weapon`, the removed `weapon_aim_offset` / `weapon_aim_raw`); they FAIL with the current code, so do not treat them as regression references.
 - The screenshot directory in `verify_*.gd` is hardcoded for Windows (`C:/Users/tunac/...`); ignore the images on Linux.
 - When debugging, check the script errors in the `godot --path .` output first; `push_warning` messages can be silently missed.
 
+## Verification (mandatory, cheapest-first)
+
+1. Run `godot --path .` and read the startup output for parse, script, or missing-resource errors before testing input.
+2. For rig, hand, finger, or weapon-mount changes, run `godot --path . res://dev_test/rig_probe.tscn` and read `user://probe_out.txt`.
+3. For fingertip/mesh measurements, run `godot --headless --path . --script res://dev_test/measure_fingertips.gd` and read the `MEASURE ...` lines.
+4. Report the exact command and observed result. If Godot is unavailable, say the change was not run; do not claim it passed.
+
+There is no automated suite to fall back on, and the stale `verify_*` probes are not regression tests.
+
 ## Godot AI MCP
 
-- `addons/godot_ai` (v4.3) is vendored and enabled in `project.godot`. The `_mcp_game_helper` autoload is required for runtime `game_manage` commands; do not delete it.
+- `addons/godot_ai` (v4.3.0) is vendored and enabled in `project.godot`. The `_mcp_game_helper` autoload is required for runtime `game_manage` commands; do not delete it. The add-on's MCP server requires `uv` (see `addons/godot_ai/README.md`).
 - If MCP is connected, MCP is the single source of truth for editor state: use `session_manage` / `editor_state` first, `scene_get_hierarchy` for the scene, and `script_manage` / `node_get_properties` before editing. Save with `scene_save`, run with `project_run`, read logs with `logs_read(source="editor")`, stop with `project_manage(op="stop")`.
 - The `scene_list`, `node_list`, `script_read`, `script_write`, `play_start`, and `console_get` names in older documentation do not exist in this version; do not use them.
 - If MCP is not connected, edit the files directly and validate with the Godot CLI; do not assume scene state as if it were connected.
 
 ## Ask questions
 
-Before writing code, use `question`: when the target scene/node/script is unclear, when there is more than one valid approach (GDScript vs scene setting), for a delete/overwrite, a `project.godot` or input map change, or if a large refactor is needed. Do not ask for single-file fixes with a clear scope.
+Before writing code, use `question`: when the target scene/node/script is unclear, when there is more than one valid approach (GDScript vs scene setting), for a delete/overwrite, a destructive or irreversible action (force push, deleting tracked assets/scenes, bulk UID rewrite), a `project.godot` or input map change, or if a large refactor is needed. Do not ask for single-file fixes with a clear scope.
 
 ## Architecture (easily broken)
 
 - `main.tscn` is the playable arena: `Player` + `IK_character` + targets + `UI`. `ik_character.tscn` is the rig itself.
+- `project.godot` is the only engine configuration: autoloads `WeaponManager` and `_mcp_game_helper`, Forward Plus rendering, Jolt physics, and a Windows D3D12 driver override. There is no environment-variable or secret-store layer.
 - Weapons are mounted through the `WeaponManager` autoload: `weapons/<id>/<id>.tscn`, with `metadata/weapon_id` on the root. The current mount point is **`IK_character/WeaponMount`** (player_controller drives it every frame); if it is missing, fall back to `RightHandAttach`, then `CameraPivot`. The header of `weapon_manager.gd` and part of `weapons/README.md` still describe the old "RightHandAttach hand socket" model; the code is current.
 - Update order carries weight: `weapon_controller` (-10) -> `player_controller` (0) -> `hand_rig` (10). `fingers_ik` must remain the **last** link in the skeleton modifier chain; if the order changes, fingers are solved with a one-frame lag/old pose.
-- `hand_rig.gd` is a `@tool` script and also drives the editor preview. During finger calibration, while `grip_wrap=false` the `*_target` markers under `RightHandAttach` / `LeftHandAttach` are authoritative; `grip_wrap=true` overrides them with a procedural grip. Details: `weapons/README.md`.
+- `hand_rig.gd` is a `@tool` script and also drives the editor preview. During finger calibration, while `grip_wrap=false` the scene `*_target` markers under `RightHandAttach` / `LeftHandAttach` are authoritative; `grip_wrap=true` replaces those scene markers with a procedural grip. A weapon's own `FingersRight/FingersLeft/<finger>` markers always take precedence over both. Details: `weapons/README.md`.
 - When adding a new weapon, copy `g18.tscn`. `weapon_controller.gd` expects the G18-specific `GunVisual/G18_rig/Skeleton3D` and the `G18_slide` / `G18_mag_2` / `G18_trigger` bone names; a different rig will silently not work and requires code changes.
 - Aiming is only entered with RMB (`look_hold`); LMB (`fire`) never enables ADS. The bullet travels from the muzzle (`muzzle`), not the camera; the aim offset is intentional.
-- The character has only a single static clip; walking/idle bob and animation transitions are disabled for this reason. Do not enable them without adding a clip.
+- Animation: the mounted rig (`IK_character.glb` via `ik_character.tscn`) has no clips, and `player_controller` sets `anim_player = null`, keeping the body static while IK drives arms/hands. `character.glb` and `assets/models/IK_character_animation.glb` each contain one Mixamo clip. Do not enable walking/idle bob or animation transitions without adding clips and re-checking the IK chain.
 
 ## Input and UI
 
-- The old `rack_slide=G`, `clear_jam=C`, `insert_mag=T` entries remain in `project.godot`; `player_controller._ensure_key_bindings()` deletes them at runtime and binds R (magazine) / F (slide + jam). If a key changes, both `project.godot` and this function must be updated.
+- The old `rack_slide=G`, `clear_jam=C`, `insert_mag=T` key bindings remain in `project.godot`; `player_controller._ensure_key_bindings()` removes them at runtime and binds R (magazine) / F (slide + jam). If a key changes, both `project.godot` and this function must be updated.
 - The control panel at the bottom left is rewritten from the InputMap by `scripts/controls_ui.gd`; editing the Label text in `main.tscn` has no lasting effect. For a new action, update `build_text()` and `DESCRIPTIONS`; the `ORDER` constant is currently unused.
 
 ## Scenes and UID
@@ -46,3 +83,34 @@ Before writing code, use `question`: when the target scene/node/script is unclea
 - `.tscn` / `.tres` files contain `uid://` and `unique_id=` references. Manual bulk editing breaks references; use MCP/editor or re-save with Godot, then open the project and verify there are no missing resource errors.
 - `_t*.tscn`, `_mcp_probe_scene.tscn`, `hello.tscn`, `temp_ik_check.tscn`, `inspect.tscn`, and `rigshot.gd` are old/scratch files left in place on purpose. `inspect.tscn`'s reference to `inspect_bones.gd` is a known gap; do not delete or "fix" it unless asked.
 - The large binary assets in the root (`gun.glb` ~94 MB, normal map ~75 MB) and `.import` files are tracked; do not re-import/export and commit them unless asked.
+
+## Documentation
+
+- `AGENTS.md` (English) is the contributor/agent guide; keep it factual and short.
+- `weapons/README.md` (Turkish) is the weapon/IK calibration guide. Its mount section still describes the old `RightHandAttach` socket model while the code uses `WeaponMount`; `weapon_manager.gd`'s header has the same stale text.
+- `addons/godot_ai/README.md` is upstream add-on documentation; do not edit vendored docs for project changes.
+- There is no user guide or REST/API reference. Do not create one as part of a code change unless asked.
+
+## Keep docs in sync
+
+| Change | Update |
+| --- | --- |
+| Mount point, update order, modifier chain, weapon contract | `AGENTS.md`; correct `weapons/README.md` and the `weapon_manager.gd` header if the mount model changes |
+| Finger calibration or `grip_wrap` behavior | `weapons/README.md`; keep the `AGENTS.md` summary aligned |
+| Input action, key binding, or controls panel | `project.godot`, `player_controller._ensure_key_bindings()`, `controls_ui.DESCRIPTIONS` / `build_text()` |
+| New weapon scene | `weapons/<id>/<id>.tscn` with `metadata/weapon_id`; `WeaponManager` discovers it, and no other code change is needed unless the rig differs |
+| MCP tool names or workflow | `AGENTS.md` (`Godot AI MCP`) |
+
+## Definition of done
+
+- The change is implemented and `godot --path .` starts without parse, script, or missing-resource errors.
+- Rig, hand, finger, or weapon-mount changes were checked with `rig_probe.tscn`; fingertip/mesh changes with `measure_fingertips.gd`.
+- Input changes keep `project.godot`, `_ensure_key_bindings()`, and the generated controls panel consistent.
+- No `debug_prints = true`, new scratch scene, secret, or unrelated asset re-import is left in the diff.
+- The summary states what changed, the exact validation commands run, the observed result, and what was deliberately left untested.
+
+## Working agreement
+
+- Investigate unfamiliar files before changing or deleting them; the scratch scenes and `rigshot.gd` listed above are intentional.
+- Prefer the smallest change that fits the existing scene/script structure; do not refactor unrelated rig, weapon, or input code in the same change.
+- Report uncertainty honestly. Do not present an unverified claim as verified.
