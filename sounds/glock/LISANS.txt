@@ -1,0 +1,22 @@
+sounds/glock — lisans notu
+===========================
+
+mag_eject_empty_01/02.wav, mag_eject_loaded.wav, mag_insert_empty.wav,
+mag_insert_loaded.wav, dry_fire.wav, slide_pull.wav, slide_release.wav:
+  Kaynak: kullanicinin Downloads/Glock_sounds klasoru (kisisel kayitlar).
+  Bu projede kullanim icin sahibinden alindi varsayilmistir.
+
+empty_click.wav, jam_clunk.wav:
+  Prosedurel uretildi (dev_test/gen_sfx.py), projeye ozel, kisit yok.
+  empty_click: parlak ince metalik bos-sarjor click'i.
+  jam_clunk: boguk dusuk frekansli tutukluk sesi.
+
+shot_9mm.wav:
+  Kaynak dosya: "9 mm gunshot-mike-koenig-123.wav"
+  Kaynak: Wikimedia Commons
+  Dosya sayfasi: https://commons.wikimedia.org/wiki/File:9_mm_gunshot-mike-koenig-123.wav
+  Yukleyen: Dantedun (oriinal kayit: Mike Koenig, SoundBible)
+  Lisans: Creative Commons Attribution-Share Alike 4.0 (CC BY-SA 4.0)
+  Lisans metni: https://creativecommons.org/licenses/by-sa/4.0
+  Kosul: oyunun dagitildigi yerde bu atif korunmali; dosya degistirilip
+  dagitilirsa ayni lisansla (CC BY-SA 4.0) paylasilmalidir.
