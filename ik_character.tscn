@@ -1,0 +1,368 @@
+[gd_scene format=3 uid="uid://c2nv5but8r67d"]
+
+[ext_resource type="PackedScene" uid="uid://dxlybkcnfbyie" path="res://IK_character.glb" id="1_glb"]
+[ext_resource type="Script" uid="uid://dfwf66yy2wvoh" path="res://scripts/ik/hand_rig.gd" id="2_gd"]
+[ext_resource type="PackedScene" uid="uid://gucxobpr5dku" path="res://weapons/g18/g18.tscn" id="3_preview"]
+[ext_resource type="Script" uid="uid://dk6jw4fkn3oys" path="res://scripts/ik/finger_ik.gd" id="4_5nm72"]
+
+[node name="IK_character" unique_id=1310603554 instance=ExtResource("1_glb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.077726245)
+script = ExtResource("2_gd")
+preview_weapon = ExtResource("3_preview")
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(607343322) index="0" unique_id=1949081051]
+bones/11/position = Vector3(0.026818523, 0.02464807, 0.015739918)
+bones/11/rotation = Quaternion(0.25328347, 0.061618652, -0.22821026, 0.93806756)
+bones/11/scale = Vector3(0.99999994, 1, 1.0000002)
+bones/12/position = Vector3(3.0733645e-08, 0.041889902, 3.5762787e-07)
+bones/12/rotation = Quaternion(-0.0023143631, -0.0011705132, 0.009300535, 0.9999534)
+bones/13/position = Vector3(3.3527613e-08, 0.03416267, -1.1920929e-07)
+bones/13/rotation = Quaternion(-0.0016655909, -0.00080750394, 0.0069194227, 0.99997437)
+bones/13/scale = Vector3(1.0000001, 1.0000002, 1)
+bones/14/position = Vector3(4.749745e-08, 0.025749836, 4.7683716e-07)
+bones/14/rotation = Quaternion(7.5591033e-06, -0.11765172, -2.0905084e-06, 0.9930549)
+bones/14/scale = Vector3(0.99999994, 1, 1.0000001)
+bones/15/position = Vector3(0.022598334, 0.09108281, 0.00517869)
+bones/15/rotation = Quaternion(2.7892291e-08, -1.8814491e-07, -0.00016411941, 1)
+bones/15/scale = Vector3(1, 1, 1.0000002)
+bones/16/position = Vector3(-9.49204e-06, 0.03699994, 1.1920929e-07)
+bones/16/rotation = Quaternion(-6.318046e-06, 2.9640762e-07, 0.00025570393, 1)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/position = Vector3(7.260591e-06, 0.02850014, 4.7683716e-07)
+bones/17/rotation = Quaternion(1.05500085e-05, -2.680371e-07, -8.8095636e-05, 1)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/position = Vector3(2.1718442e-06, 0.027721822, -1.1920929e-07)
+bones/18/rotation = Quaternion(-4.3192977e-06, 0.0010028642, 8.707832e-05, 0.99999946)
+bones/18/scale = Vector3(0.99999994, 0.9999999, 1)
+bones/19/position = Vector3(-2.6077032e-07, 0.09532511, 4.7683716e-07)
+bones/19/rotation = Quaternion(2.7892044e-08, 5.5796403e-09, -0.00050157116, 0.9999999)
+bones/19/scale = Vector3(1, 1, 1.0000002)
+bones/20/position = Vector3(1.1175871e-08, 0.03700012, 0)
+bones/20/rotation = Quaternion(-1.966889e-06, 1.3229616e-08, 0.00084981316, 0.99999964)
+bones/20/scale = Vector3(1.0000001, 1.0000001, 1)
+bones/21/position = Vector3(-3.7252903e-09, 0.029499829, 0)
+bones/21/rotation = Quaternion(1.9668862e-06, -1.4837829e-07, -0.00032198426, 0.99999994)
+bones/21/scale = Vector3(0.9999999, 0.9999999, 1)
+bones/22/position = Vector3(2.30968e-07, 0.029466212, -3.5762787e-07)
+bones/22/rotation = Quaternion(-4.267349e-06, 0.00092901266, 0.0001665991, 0.9999996)
+bones/22/scale = Vector3(1, 1, 1)
+bones/23/position = Vector3(-0.018651359, 0.09103602, 0.00043070316)
+bones/23/rotation = Quaternion(-3.1666417e-08, 1.09860125e-07, 0.00015601714, 1)
+bones/23/scale = Vector3(1, 1, 1.0000002)
+bones/24/position = Vector3(1.1436641e-05, 0.033792734, -2.3841858e-07)
+bones/24/rotation = Quaternion(-2.0265315e-06, 4.755175e-10, -0.00022161007, 1)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/position = Vector3(-3.0174851e-06, 0.028896987, -1.1920929e-07)
+bones/25/rotation = Quaternion(2.145764e-06, -1.4878367e-07, -0.00011247397, 1)
+bones/26/position = Vector3(-8.702278e-06, 0.026388109, -2.3841858e-07)
+bones/26/rotation = Quaternion(-4.434788e-06, 0.00014609026, 0.00016492669, 1)
+bones/26/scale = Vector3(1.0000001, 1, 1)
+bones/27/position = Vector3(-0.03806282, 0.0807668, 0.004867077)
+bones/27/rotation = Quaternion(5.034796e-06, -2.16455e-08, 0.0005204401, 0.9999999)
+bones/27/scale = Vector3(0.99999994, 0.99999994, 1.0000002)
+bones/28/position = Vector3(7.450581e-09, 0.036000073, 0)
+bones/28/rotation = Quaternion(-2.2053594e-06, 1.4071824e-07, 0.00084626814, 0.99999964)
+bones/28/scale = Vector3(1.0000001, 1.0000001, 1)
+bones/29/position = Vector3(-2.2351742e-08, 0.020999849, 1.1920929e-07)
+bones/29/rotation = Quaternion(5.6623435e-06, -3.1852164e-07, -0.0004968656, 0.9999999)
+bones/29/scale = Vector3(1.0000001, 1.0000001, 1.0000001)
+bones/30/position = Vector3(-4.6938658e-07, 0.021157682, 0)
+bones/30/rotation = Quaternion(-5.7168054e-06, 0.0015697496, -4.1319403e-05, 0.99999875)
+bones/30/scale = Vector3(0.9999998, 0.9999998, 0.9999998)
+bones/35/position = Vector3(-0.026817316, 0.0246616, 0.015761733)
+bones/35/rotation = Quaternion(0.25309575, -0.061323695, 0.2273527, 0.93834573)
+bones/35/scale = Vector3(1.0000001, 1.0000002, 1.0000001)
+bones/36/position = Vector3(5.8673322e-08, 0.041870855, 0)
+bones/36/rotation = Quaternion(-0.0020650914, 0.0010431429, -0.008213544, 0.9999636)
+bones/36/scale = Vector3(0.9999999, 0.9999999, 0.99999994)
+bones/37/position = Vector3(2.142042e-08, 0.034183968, -2.3841858e-07)
+bones/37/rotation = Quaternion(-0.0015303164, 0.00074503553, -0.0060737673, 0.9999801)
+bones/37/scale = Vector3(1, 1, 1)
+bones/38/position = Vector3(5.1688403e-07, 0.025805824, 0)
+bones/38/rotation = Quaternion(-1.13776004e-07, 0.12279099, -9.760547e-06, 0.9924326)
+bones/38/scale = Vector3(1, 1, 1)
+bones/39/position = Vector3(-0.022598628, 0.09109318, 0.0051801205)
+bones/39/rotation = Quaternion(8.774436e-07, -6.466432e-08, -4.407351e-05, 1)
+bones/39/scale = Vector3(1, 1.0000002, 1.0000002)
+bones/40/position = Vector3(-3.4086406e-06, 0.03699994, -1.1920929e-07)
+bones/40/rotation = Quaternion(4.768497e-07, 1.1959783e-07, 0.00010514259, 1)
+bones/41/position = Vector3(3.3639371e-06, 0.02849996, -1.1920929e-07)
+bones/41/rotation = Quaternion(2.20536e-06, -1.7923665e-07, -6.6280365e-05, 1)
+bones/42/position = Vector3(-3.9860606e-07, 0.027748644, -2.3841858e-07)
+bones/42/rotation = Quaternion(-4.2369647e-06, -0.00037738695, -1.3170983e-05, 0.99999994)
+bones/42/scale = Vector3(0.99999994, 0.99999994, 1)
+bones/43/position = Vector3(-3.6507845e-07, 0.09533405, -5.9604645e-07)
+bones/43/rotation = Quaternion(-7.318777e-07, -4.9796656e-09, -3.167574e-05, 1)
+bones/43/scale = Vector3(1, 1.0000002, 1.0000002)
+bones/44/position = Vector3(-1.4342368e-06, 0.03699994, -1.1920929e-07)
+bones/44/rotation = Quaternion(3.993511e-06, 8.949242e-08, 2.1398067e-05, 1)
+bones/45/position = Vector3(1.1920929e-07, 0.029500008, -3.5762787e-07)
+bones/45/rotation = Quaternion(-3.9935067e-06, -2.0853463e-07, 2.0444393e-05, 1)
+bones/46/position = Vector3(1.3262033e-06, 0.029528737, -1.1920929e-07)
+bones/46/rotation = Quaternion(8.819671e-08, -0.0010238893, 2.801433e-05, 0.99999946)
+bones/46/scale = Vector3(0.99999994, 1, 0.99999994)
+bones/47/position = Vector3(0.018650815, 0.09104538, 0.0004299879)
+bones/47/rotation = Quaternion(-7.3187334e-07, -4.951924e-09, 6.232822e-06, 1)
+bones/47/scale = Vector3(1, 1.0000002, 1.0000002)
+bones/48/position = Vector3(-7.450581e-09, 0.03150004, -1.1920929e-07)
+bones/48/rotation = Quaternion(4.1127205e-06, 5.960513e-08, 1.1920859e-07, 1)
+bones/49/position = Vector3(-7.450581e-09, 0.029499829, 0)
+bones/49/rotation = Quaternion(-4.053116e-06, -3.5763034e-07, -5.960452e-07, 1)
+bones/50/position = Vector3(-7.301569e-07, 0.026443183, 0)
+bones/50/rotation = Quaternion(-1.272985e-07, 0.0004935861, 1.6510488e-05, 0.9999999)
+bones/50/scale = Vector3(1, 1, 1)
+bones/51/position = Vector3(0.03806264, 0.08077788, 0.0048685074)
+bones/51/rotation = Quaternion(-4.009796e-06, -5.4866657e-08, 0.0020447762, 0.9999979)
+bones/51/scale = Vector3(1, 1.0000002, 1.0000002)
+bones/52/position = Vector3(9.380281e-06, 0.035999954, 1.1920929e-07)
+bones/52/rotation = Quaternion(-5.30488e-06, -1.01808226e-07, -0.00021076357, 1)
+bones/52/scale = Vector3(0.9999999, 0.9999998, 0.99999994)
+bones/53/position = Vector3(-3.3825636e-06, 0.021000087, 2.3841858e-07)
+bones/53/rotation = Quaternion(8.642684e-06, 5.668119e-07, -6.660877e-05, 1)
+bones/53/scale = Vector3(1.0000001, 1.0000001, 1.0000001)
+bones/54/position = Vector3(-6.251037e-06, 0.021255255, -1.1920929e-07)
+bones/54/rotation = Quaternion(-2.6265718e-06, -0.0007839955, 0.00014713522, 0.9999997)
+bones/54/scale = Vector3(1, 0.99999994, 1)
+
+[node name="r_leg" type="TwoBoneIK3D" parent="Armature/Skeleton3D" index="2" unique_id=844685904]
+setting_count = 1
+settings/0/target_node = NodePath("../../../r_feet_marker")
+settings/0/pole_node = NodePath("../../../r_feet_pole")
+settings/0/root_bone_name = "mixamorig_RightUpLeg"
+settings/0/root_bone = 55
+settings/0/middle_bone_name = "mixamorig_RightLeg"
+settings/0/middle_bone = 56
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "mixamorig_RightFoot"
+settings/0/end_bone = 57
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="l_leg" type="TwoBoneIK3D" parent="Armature/Skeleton3D" index="3" unique_id=2120590276]
+setting_count = 1
+settings/0/target_node = NodePath("../../../l_feet_marker")
+settings/0/pole_node = NodePath("../../../l_feet_pole")
+settings/0/root_bone_name = "mixamorig_LeftUpLeg"
+settings/0/root_bone = 60
+settings/0/middle_bone_name = "mixamorig_LeftLeg"
+settings/0/middle_bone = 61
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "mixamorig_LeftFoot"
+settings/0/end_bone = 62
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="r_arm" type="TwoBoneIK3D" parent="Armature/Skeleton3D" index="4" unique_id=1354135739]
+setting_count = 1
+settings/0/target_node = NodePath("../../../r_arm_marker")
+settings/0/pole_node = NodePath("../../../r_arm_pole")
+settings/0/root_bone_name = "mixamorig_RightArm"
+settings/0/root_bone = 8
+settings/0/middle_bone_name = "mixamorig_RightForeArm"
+settings/0/middle_bone = 9
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "mixamorig_RightHand"
+settings/0/end_bone = 10
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = true
+settings/0/end_bone/direction = 6
+settings/0/end_bone/length = 0.0
+
+[node name="l_arm" type="TwoBoneIK3D" parent="Armature/Skeleton3D" index="5" unique_id=538906847]
+setting_count = 1
+settings/0/target_node = NodePath("../../../l_arm_marker")
+settings/0/pole_node = NodePath("../../../l_arm_pole")
+settings/0/root_bone_name = "mixamorig_LeftArm"
+settings/0/root_bone = 32
+settings/0/middle_bone_name = "mixamorig_LeftForeArm"
+settings/0/middle_bone = 33
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "mixamorig_LeftHand"
+settings/0/end_bone = 34
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="head_look_at" type="LookAtModifier3D" parent="Armature/Skeleton3D" index="6" unique_id=1708248772]
+target_node = NodePath("../../../head_target")
+bone_name = "mixamorig_Head"
+bone = 5
+
+[node name="r_hand_copy_trans" type="CopyTransformModifier3D" parent="Armature/Skeleton3D" index="7" unique_id=1289038748]
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "mixamorig_RightHand"
+settings/0/apply_bone = 10
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("../../../r_arm_marker")
+settings/0/copy = 2
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = false
+
+[node name="l_hand_copy_trans" type="CopyTransformModifier3D" parent="Armature/Skeleton3D" index="8" unique_id=1630120330]
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "mixamorig_LeftHand"
+settings/0/apply_bone = 34
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("../../../l_arm_marker")
+settings/0/copy = 2
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = false
+
+[node name="r_Thumb" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="9" unique_id=1530201585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_RightHandThumb1"
+tip_bone = &"mixamorig_RightHandThumb4"
+target_node = NodePath("../../../RightHandAttach/r_Thumb_target")
+
+[node name="l_Thumb" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="10" unique_id=5649911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_LeftHandThumb1"
+tip_bone = &"mixamorig_LeftHandThumb4"
+target_node = NodePath("../../../LeftHandAttach/l_Thumb_target")
+
+[node name="r_Index" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="11" unique_id=1852314958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_RightHandIndex1"
+tip_bone = &"mixamorig_RightHandIndex4"
+target_node = NodePath("../../../RightHandAttach/r_Index_target")
+
+[node name="l_Index" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="12" unique_id=886565061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_LeftHandIndex1"
+tip_bone = &"mixamorig_LeftHandIndex4"
+target_node = NodePath("../../../LeftHandAttach/l_Index_target")
+
+[node name="r_Middle" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="13" unique_id=1604840616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_RightHandMiddle1"
+tip_bone = &"mixamorig_RightHandMiddle4"
+target_node = NodePath("../../../RightHandAttach/r_Middle_target")
+
+[node name="l_Middle" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="14" unique_id=427627009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_LeftHandMiddle1"
+tip_bone = &"mixamorig_LeftHandMiddle4"
+target_node = NodePath("../../../LeftHandAttach/l_Middle_target")
+
+[node name="r_Pinky" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="15" unique_id=2018550575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_RightHandPinky1"
+tip_bone = &"mixamorig_RightHandPinky4"
+target_node = NodePath("../../../RightHandAttach/r_Pinky_target")
+
+[node name="l_Pinky" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="16" unique_id=1995155434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_LeftHandPinky1"
+tip_bone = &"mixamorig_LeftHandPinky4"
+target_node = NodePath("../../../LeftHandAttach/l_Pinky_target")
+
+[node name="r_Ring" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="17" unique_id=24213642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_RightHandRing1"
+tip_bone = &"mixamorig_RightHandRing4"
+target_node = NodePath("../../../RightHandAttach/r_Ring_target")
+
+[node name="l_Ring" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="18" unique_id=2138726506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009496093)
+root_bone = &"mixamorig_LeftHandRing1"
+tip_bone = &"mixamorig_LeftHandRing4"
+target_node = NodePath("../../../LeftHandAttach/l_Ring_target")
+
+[node name="fingers_ik" type="SkeletonModifier3D" parent="Armature/Skeleton3D" index="19" unique_id=163915098]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("4_5nm72")
+
+[node name="r_feet_marker" type="Marker3D" parent="." index="1" unique_id=593963181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08813381, 0.07727128, 0)
+
+[node name="r_feet_pole" type="Marker3D" parent="." index="2" unique_id=1763327182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21440677, 0.66233516, 0.5492424)
+
+[node name="l_feet_marker" type="Marker3D" parent="." index="3" unique_id=290070618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10186404, 0.07727128, 0)
+
+[node name="l_feet_pole" type="Marker3D" parent="." index="4" unique_id=706715274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27792886, 0.6622108, 0.547402)
+
+[node name="r_arm_marker" type="Marker3D" parent="." index="5" unique_id=1299467747]
+transform = Transform3D(0, 0, 1, 1, 0, 0, 0, 1, 0, -0.0799, 1.521294, 0.344804)
+
+[node name="r_arm_pole" type="Marker3D" parent="." index="6" unique_id=1183377927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2399, 1.2212939, 0.29480398)
+
+[node name="l_arm_marker" type="Marker3D" parent="." index="7" unique_id=1118314075]
+transform = Transform3D(-5.9604645e-08, -8.940697e-08, -1, -0.99999976, 0, -5.9604645e-08, -8.940697e-08, 0.9999998, -2.0861626e-07, 0.007204067, 1.5261601, 0.3525893)
+
+[node name="l_arm_pole" type="Marker3D" parent="." index="8" unique_id=1130753922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16720407, 1.22616, 0.3025893)
+
+[node name="head_target" type="Marker3D" parent="." index="9" unique_id=1210477293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.069527715, 1.783399, 1.3394104)
+
+[node name="RightHandAttach" type="BoneAttachment3D" parent="." index="10" unique_id=1200000001]
+transform = Transform3D(5.9604645e-08, -8.940697e-08, 1, 0.99999976, 0, 5.9604645e-08, 8.940697e-08, 0.9999998, 2.0861626e-07, -0.07990002, 1.5212941, 0.34480405)
+bone_name = "mixamorig_RightHand"
+bone_idx = 10
+use_external_skeleton = true
+external_skeleton = NodePath("../Armature/Skeleton3D")
+
+[node name="r_Thumb_target" type="Marker3D" parent="RightHandAttach" index="0" unique_id=263861348]
+transform = Transform3D(1, -8.4703295e-22, -1.1117313e-21, 0, 1, 2.842171e-14, 8.881801e-16, 1.4210855e-14, 1, 0.020288944, 0.062478036, -0.012764193)
+
+[node name="r_Index_target" type="Marker3D" parent="RightHandAttach" index="1" unique_id=36752061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031073, 0.040187, 0.04027)
+
+[node name="r_Middle_target" type="Marker3D" parent="RightHandAttach" index="2" unique_id=1285227602]
+transform = Transform3D(1, -8.4703295e-22, -1.1117313e-21, 0, 1, 2.842171e-14, 8.881801e-16, 1.4210855e-14, 1, 0.0097949505, 0.112608045, 0.04008001)
+
+[node name="r_Ring_target" type="Marker3D" parent="RightHandAttach" index="3" unique_id=1758750576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009044, 0.033344, 0.040033)
+
+[node name="r_Pinky_target" type="Marker3D" parent="RightHandAttach" index="4" unique_id=1087235828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02971, 0.030605, 0.039452)
+
+[node name="LeftHandAttach" type="BoneAttachment3D" parent="." index="11" unique_id=1200000002]
+transform = Transform3D(-5.9604645e-08, -1.0430813e-07, -1, -0.9999999, -1.4901161e-08, 2.3841858e-07, -4.4703484e-08, 0.9999999, -2.9802322e-08, 0.007204056, 1.5261601, 0.35258943)
+bone_name = "mixamorig_LeftHand"
+bone_idx = 34
+use_external_skeleton = true
+external_skeleton = NodePath("../Armature/Skeleton3D")
+
+[node name="l_Thumb_target" type="Marker3D" parent="LeftHandAttach" index="0" unique_id=1119834319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027328, 0.022594, -0.015149)
+
+[node name="l_Index_target" type="Marker3D" parent="LeftHandAttach" index="1" unique_id=1794980196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.036987, 0.006879, -0.007977)
+
+[node name="l_Middle_target" type="Marker3D" parent="LeftHandAttach" index="2" unique_id=1433772290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015719, 0.003095, -0.006616)
+
+[node name="l_Ring_target" type="Marker3D" parent="LeftHandAttach" index="3" unique_id=421158479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003115, -9.7e-05, -0.006858)
+
+[node name="l_Pinky_target" type="Marker3D" parent="LeftHandAttach" index="4" unique_id=1993770405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023824, -0.00256, -0.008152)
+
+[node name="EyeAnchor" type="Marker3D" parent="." index="12" unique_id=60755845]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 1.679294, 0.084804)
+
+[node name="WeaponMount" type="Node3D" parent="." index="13" unique_id=1354865981]
+transform = Transform3D(5.9604645e-08, 0.99999976, 8.940697e-08, -8.940697e-08, 0, 0.9999998, 1, 5.9604645e-08, 2.0861626e-07, -0.07990002, 1.5212941, 0.34480405)
