@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://etmkxmpa26ho"]
+
+[ext_resource type="Texture2D" uid="uid://2iy8weuaf8be" path="res://assets/textures/kenney_grids/Light/texture_07.png" id="1_se52a"]
+[ext_resource type="PackedScene" uid="uid://dxlybkcnfbyie" path="res://assets/models/IK_character.glb" id="2_e2cre"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m0rpm"]
+sky_horizon_color = Color(0.46666667, 0.4862745, 0.5058824, 1)
+ground_horizon_color = Color(0.4627451, 0.48235294, 0.5019608, 1)
+
+[sub_resource type="Sky" id="Sky_c6xj6"]
+sky_material = SubResource("ProceduralSkyMaterial_m0rpm")
+
+[sub_resource type="Environment" id="Environment_6bw2v"]
+background_mode = 2
+sky = SubResource("Sky_c6xj6")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xu4i"]
+albedo_color = Color(0.32172796, 0.32172796, 0.32172796, 1)
+albedo_texture = ExtResource("1_se52a")
+uv1_triplanar = true
+
+[node name="world" type="Node3D" unique_id=1534360198]
+
+[node name="env" type="Node" parent="." unique_id=1926040072]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env" unique_id=1581935707]
+environment = SubResource("Environment_6bw2v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" unique_id=439935835]
+transform = Transform3D(0.8026927, -0.5164916, 0.2981964, 2.7879908e-08, 0.49999997, 0.86602557, -0.59639305, -0.69515234, 0.4013463, 0, 0, 0)
+shadow_enabled = true
+
+[node name="stage" type="CSGCombiner3D" parent="." unique_id=1045162169]
+material_override = SubResource("StandardMaterial3D_1xu4i")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="stage" unique_id=400722263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="stage" unique_id=197580553]
+transform = Transform3D(0.7924961, -0.1428275, -0.5929167, 0.14000095, 0.9888335, -0.05107373, 0.5935906, -0.042533197, 0.8036425, 4.418614, -0.4122107, 3.8735237)
+use_collision = true
+size = Vector3(3, 3, 3)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="stage" unique_id=1994085279]
+transform = Transform3D(0.8247228, -0.14035594, -0.54784346, -0.119673535, 0.90346354, -0.41162124, 0.5527301, 0.4050358, 0.7283099, -4.3853207, -0.5407593, -4.9555387)
+use_collision = true
+size = Vector3(3, 3, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="stage" unique_id=701073630]
+transform = Transform3D(-0.9186721, 0.056438513, 0.39096847, -0.119673535, 0.90346354, -0.4116212, -0.3764571, -0.42493346, -0.8232323, -2.115626, -0.54075885, 4.219141)
+use_collision = true
+size = Vector3(3, 3, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="stage" unique_id=1395104005]
+transform = Transform3D(0.12154446, 0.89712083, 0.42473677, -0.9407354, 0.24060985, -0.23900624, -0.3166132, -0.3705151, 0.8731979, 3.528325, -0.2738657, -0.89702034)
+use_collision = true
+size = Vector3(3, 3, 3)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=779950754]
+transform = Transform3D(0.7300964, 0.31445187, -0.60669535, 0, 0.8878328, 0.4601662, 0.6833441, -0.33596566, 0.64820355, -2.2813985, 2.6346283, 2.406222)
+fov = 37.6
+
+[node name="IK_character" parent="." unique_id=1310603554 instance=ExtResource("2_e2cre")]
+
+[node name="r_leg" type="TwoBoneIK3D" parent="IK_character/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1310603554, 821838110) index="2" unique_id=844685904]
+setting_count = 1
+settings/0/target_node = NodePath("../../../r_feet_marker")
+settings/0/pole_node = NodePath("../../../r_feet_pole")
+settings/0/root_bone_name = "mixamorig_RightUpLeg"
+settings/0/root_bone = 55
+settings/0/middle_bone_name = "mixamorig_RightLeg"
+settings/0/middle_bone = 56
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "mixamorig_RightFoot"
+settings/0/end_bone = 57
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="l_leg" type="TwoBoneIK3D" parent="IK_character/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1310603554, 821838110) index="3" unique_id=2120590276]
+setting_count = 1
+settings/0/target_node = NodePath("../../../l_feet_marker")
+settings/0/pole_node = NodePath("../../../l_feet_pole")
+settings/0/root_bone_name = "mixamorig_LeftUpLeg"
+settings/0/root_bone = 60
+settings/0/middle_bone_name = "mixamorig_LeftLeg"
+settings/0/middle_bone = 61
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "mixamorig_LeftFoot"
+settings/0/end_bone = 62
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="r_arm" type="TwoBoneIK3D" parent="IK_character/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1310603554, 821838110) index="4" unique_id=1354135739]
+setting_count = 1
+settings/0/target_node = NodePath("../../../r_arm_marker")
+settings/0/pole_node = NodePath("../../../r_arm_pole")
+settings/0/root_bone_name = "mixamorig_RightArm"
+settings/0/root_bone = 8
+settings/0/middle_bone_name = "mixamorig_RightForeArm"
+settings/0/middle_bone = 9
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "mixamorig_RightHand"
+settings/0/end_bone = 10
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = true
+settings/0/end_bone/direction = 6
+settings/0/end_bone/length = 0.0
+
+[node name="l_arm" type="TwoBoneIK3D" parent="IK_character/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1310603554, 821838110) index="5" unique_id=538906847]
+setting_count = 1
+settings/0/target_node = NodePath("../../../l_arm_marker")
+settings/0/pole_node = NodePath("../../../l_arm_pole")
+settings/0/root_bone_name = "mixamorig_LeftArm"
+settings/0/root_bone = 32
+settings/0/middle_bone_name = "mixamorig_LeftForeArm"
+settings/0/middle_bone = 33
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "mixamorig_LeftHand"
+settings/0/end_bone = 34
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="head_look_at" type="LookAtModifier3D" parent="IK_character/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1310603554, 821838110) index="6" unique_id=1708248772]
+target_node = NodePath("../../../head_target")
+bone_name = "mixamorig_Head"
+bone = 5
+
+[node name="r_hand_copy_trans" type="CopyTransformModifier3D" parent="IK_character/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1310603554, 821838110) index="7" unique_id=1289038748]
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "mixamorig_RightHand"
+settings/0/apply_bone = 10
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("../../../r_arm_marker")
+settings/0/copy = 7
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = false
+
+[node name="r_feet_marker" type="Marker3D" parent="IK_character" unique_id=593963181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08813381, 0.07727128, 0)
+
+[node name="r_feet_pole" type="Marker3D" parent="IK_character" unique_id=1763327182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21440677, 0.66233516, 0.5492424)
+
+[node name="l_feet_marker" type="Marker3D" parent="IK_character" unique_id=290070618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10186404, 0.07727128, 0)
+
+[node name="l_feet_pole" type="Marker3D" parent="IK_character" unique_id=706715274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27792886, 0.6622108, 0.547402)
+
+[node name="r_arm_marker" type="Marker3D" parent="IK_character" unique_id=1299467747]
+transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -0.056675408, -4.364113e-08, -0.99839264, 0.99839264, -2.4773588e-09, -0.056675408, -0.6445385, 1.458265, 0)
+
+[node name="r_arm_pole" type="Marker3D" parent="IK_character" unique_id=1183377927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4650765, 1.4, -0.46124923)
+
+[node name="l_arm_marker" type="Marker3D" parent="IK_character" unique_id=1118314075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6047973, 1.5698025, 0.07068235)
+
+[node name="l_arm_pole" type="Marker3D" parent="IK_character" unique_id=1130753922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417107, 1.4, -0.41837847)
+
+[node name="head_target" type="Marker3D" parent="IK_character" unique_id=1210477293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.069527715, 1.783399, 1.3394104)
+
+[editable path="IK_character"]
