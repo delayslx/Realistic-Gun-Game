@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://bwo6yx6m4n20p"]
+
+[ext_resource type="Script" uid="uid://duduesvcc12rd" path="res://scripts/player_controller.gd" id="1_1bvp3"]
+[ext_resource type="Material" uid="uid://tjyhaiqkfke3" path="res://mats/floor_mat.tres" id="1_5vw27"]
+[ext_resource type="PackedScene" uid="uid://c2nv5but8r67d" path="res://ik_character.tscn" id="7_272bh"]
+[ext_resource type="Environment" uid="uid://claotvi7a1f8q" path="res://mats/env.tres" id="8_4c57u"]
+[ext_resource type="Material" uid="uid://c144mksowsyjm" path="res://mats/target_mat.tres" id="8_kek77"]
+[ext_resource type="Script" uid="uid://dtfbp11xxfhdc" path="res://scripts/controls_ui.gd" id="9_controls"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bvp3"]
+radius = 0.35
+height = 1.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_ycdy4"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w48qg"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vivmo"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2cqfq"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yaehf"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_074og"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="World" type="Node3D" unique_id=1833229642]
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=2080771405]
+transform = Transform3D(-0.99258804, -0.07829026, 0.092949465, -1.1605571e-08, 0.7648422, 0.6442177, -0.12152764, 0.6394428, -0.7591732, -0.11624217, 2.9066648, -2.0737019)
+shadow_blur = 0.0
+directional_shadow_split_1 = 0.06
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1388860601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030019626, -0.51842123, -0.012466848)
+mesh = SubResource("BoxMesh_0xm2m")
+surface_material_override/0 = ExtResource("1_5vw27")
+
+[node name="FloorBody" type="StaticBody3D" parent="." unique_id=473188741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="FloorShape" type="CollisionShape3D" parent="FloorBody" unique_id=1025002917]
+shape = SubResource("BoxShape3D_h2yge")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1379360428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_1bvp3")
+
+[node name="BodyCollider" type="CollisionShape3D" parent="Player" unique_id=444664347]
+shape = SubResource("CapsuleShape3D_1bvp3")
+
+[node name="CameraPivot" type="Node3D" parent="Player" unique_id=2042906780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, -0.1)
+
+[node name="Camera" type="Camera3D" parent="Player/CameraPivot" unique_id=1724256468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026135087, -0.02125933)
+current = true
+near = 0.03
+
+[node name="IK_character" parent="Player" unique_id=594986346 instance=ExtResource("7_272bh")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.85, 0)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=205165015]
+
+[node name="ControlsPanel" type="Control" parent="UI" unique_id=1851043999]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -230.0
+offset_right = 600.0
+offset_bottom = -12.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ControlsLabel" type="Label" parent="UI/ControlsPanel" unique_id=695684353]
+modulate = Color(1, 1, 1, 0.9)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 14
+text = "CONTROLS
+WASD: Move
+Mouse: Look (bodycam head)
+Wrist aims gun, bullet follows muzzle
+Hold RMB: ADS (steady wrist, zoom)
+LMB: Fire
+R: Smart reload (eject+insert)
+F: Rack slide / clear jam
+ESC: Toggle cursor"
+script = ExtResource("9_controls")
+
+[node name="WorldEnv" type="WorldEnvironment" parent="." unique_id=115511023]
+environment = ExtResource("8_4c57u")
+
+[node name="TargetA" type="StaticBody3D" parent="." unique_id=1930672859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.25, -7)
+
+[node name="Mesh" type="MeshInstance3D" parent="TargetA" unique_id=1228253044]
+mesh = SubResource("BoxMesh_ycdy4")
+surface_material_override/0 = ExtResource("8_kek77")
+
+[node name="Shape" type="CollisionShape3D" parent="TargetA" unique_id=1646181748]
+shape = SubResource("BoxShape3D_w48qg")
+
+[node name="TargetB" type="StaticBody3D" parent="." unique_id=1024619698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -8)
+
+[node name="Mesh" type="MeshInstance3D" parent="TargetB" unique_id=1313195099]
+mesh = SubResource("BoxMesh_vivmo")
+surface_material_override/0 = ExtResource("8_kek77")
+
+[node name="Shape" type="CollisionShape3D" parent="TargetB" unique_id=240598521]
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="TargetC" type="StaticBody3D" parent="." unique_id=758584728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.25, -7)
+
+[node name="Mesh" type="MeshInstance3D" parent="TargetC" unique_id=56172420]
+mesh = SubResource("BoxMesh_yaehf")
+surface_material_override/0 = ExtResource("8_kek77")
+
+[node name="Shape" type="CollisionShape3D" parent="TargetC" unique_id=1464368978]
+shape = SubResource("BoxShape3D_074og")

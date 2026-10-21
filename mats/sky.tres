@@ -1,0 +1,6 @@
+[gd_resource type="Sky" format=3 uid="uid://bagb8fuq25kjo"]
+
+[ext_resource type="Material" uid="uid://dxdppr3ooo27a" path="res://mats/sky_mat.tres" id="1_y3ogb"]
+
+[resource]
+sky_material = ExtResource("1_y3ogb")
