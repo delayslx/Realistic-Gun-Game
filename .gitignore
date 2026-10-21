@@ -1,3 +1,64 @@
-# Godot 4+ specific ignores
+# ---------------------------------------------------------------------------
+# Godot 4+ (this project: Forward Plus + Jolt, GDScript only, no build step)
+# ---------------------------------------------------------------------------
+
+# Editor cache and generated import data. Godot rebuilds this directory.
 .godot/
+
+# Android build template and generated Gradle files.
 /android/
+
+# Export settings. May contain keystore paths/passwords; keep it local.
+# If you decide to share presets, commit a sanitized copy instead.
+export_presets.cfg
+
+# Runtime settings overrides written by Godot or tooling.
+override.cfg
+
+# Mono/C# output, only relevant if the project ever adds C#.
+# .mono/
+# *.csproj
+# *.sln
+
+# Exported builds; there is no build step today, but keep them out if added.
+/build/
+/dist/
+/builds/
+
+# ---------------------------------------------------------------------------
+# Logs and crash output
+# ---------------------------------------------------------------------------
+logs/
+*.log
+core
+core.*
+*.dmp
+
+# ---------------------------------------------------------------------------
+# OS junk
+# ---------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# Editors and local tooling
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.tmp
+
+# ---------------------------------------------------------------------------
+# Tracked on purpose (do NOT ignore)
+#   *.import        import metadata; required to resolve resources
+#   *.uid           stable script/resource IDs used by .tscn/.tres references
+#   .editorconfig   shared formatting
+# ---------------------------------------------------------------------------
