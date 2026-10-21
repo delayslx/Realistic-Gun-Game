@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://0q0rykpuxnxa"]
+
+[ext_resource type="PackedScene" uid="uid://dxlybkcnfbyie" path="res://assets/models/IK_character.glb" id="1_g"]
+
+[node name="Root" type="Node3D" unique_id=497997918]
+
+[node name="Root#IK_character" parent="." unique_id=422315183 instance=ExtResource("1_g")]
+
+[node name="Root_IK_character_Armature_Skeleton3D#test_mod" type="TwoBoneIK3D" parent="." unique_id=2025520859]
